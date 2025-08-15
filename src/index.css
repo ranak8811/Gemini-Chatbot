@@ -1,0 +1,393 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Prata&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=DM+Serif+Text:ital@0;1&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Cookie&display=swap");
+
+/* Tailwind V4.0 */
+@import "tailwindcss";
+
+/* Dark-Mode Toggle manually */
+@variant dark (&:where(.dark, .dark *));
+
+/* on-special-cases */
+body {
+  background: #1b1b1b;
+  scroll-behavior: smooth;
+}
+
+/* FONTS */
+* {
+  font-family: "nevermind hand", sans-serif;
+}
+
+@font-face {
+  font-family: "nevermind hand";
+  src: url("/fonts/NEVERMINDHAND-REGULAR.TTF");
+}
+
+.playfair-display {
+  font-family: "Playfair Display", serif;
+  font-weight: 400;
+  /* font-style: normal; */
+}
+
+.cookie-font {
+  font-family: "Cookie", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.dm-serif {
+  font-family: "DM Serif Text", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.font-1 {
+  font-family: "Bricolage Grotesque", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+}
+
+a.active hr {
+  display: block;
+}
+
+::-webkit-scrollbar {
+  display: none;
+  -webkit-scrollbar: none;
+}
+
+/* Extending themes-example */
+@theme {
+  --color-test-green: #adfe02;
+  --drop-shadow-3xl: 0 35px 35px rgba(0, 0, 0, 0.25);
+
+  /* Animations Extension */
+  --animate-wiggle: wiggle 2s ease-out infinite;
+  @keyframes wiggle {
+    0%,
+    100% {
+      transform: rotate(-3deg);
+    }
+    50% {
+      transform: rotate(3deg);
+    }
+  }
+
+  --animate-border: border 5s linear infinite;
+  @keyframes border {
+    0% {
+      border-color: rgb(56, 189, 248); /* Tailwind CSS sky-400 */
+    }
+    50% {
+      border-color: rgb(236, 72, 153);
+    }
+    75% {
+      border-color: #adfe02;
+    }
+    100% {
+      border-color: rgb(56, 189, 248);
+    }
+  }
+
+  --animate-scroll: scroll 40s linear infinite;
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+}
+
+/* CUSTOM_UTIITIES */
+/* @utility container {
+  margin-inline: auto;
+  padding-inline: 2rem;
+} */
+@utility centered-row {
+  @apply flex items-center;
+}
+@layer components {
+  .btn-hover {
+    @apply hover:bg-transparent hover:border hover:border-zinc-600 hover:transition-all;
+  }
+
+  .col {
+    @apply flex flex-col;
+  }
+
+  .transition2 {
+    @apply transition-all duration-300 cursor-pointer;
+  }
+
+  .card-hover {
+    @apply hover:bg-zinc-800 transition-all hover:text-zinc-100 duration-500;
+  }
+
+  .black-text {
+    @apply text-zinc-500/90;
+  }
+
+  .line-bottom {
+    @apply border-b border-b-zinc-500/40;
+  }
+
+  .center-item {
+    @apply centered-row justify-center;
+  }
+
+  .grad-text {
+    @apply text-transparent bg-gradient-to-tr  bg-clip-text;
+  }
+
+  .grad1 {
+    @apply text-transparent bg-gradient-to-tr bg-clip-text to-blue-400 from-purple-400;
+  }
+
+  .link-hover {
+    @apply hover:font-bold hover:text-zinc-800 transition-all duration-300 ease-in-out hover:-translate-y-1;
+  }
+}
+
+/* Small-Screen SpecialCase Fix */
+@media (max-width: 380px) {
+  .test {
+    /* background: salmon; */
+    font-size: 75px;
+  }
+
+  .something {
+    /* background: chocolate; */
+    font-size: 16px;
+    width: 340px;
+    position: absolute;
+    bottom: -380px;
+    left: 5px;
+    gap: 10px;
+  }
+}
+
+/* Custom utility classes from original that need direct mapping or unique styles */
+.glass {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.05
+  ); /* Lighter than glass2 for sidebar */
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.glass2 {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.02
+  ); /* More subtle for main sidebar */
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+.wblur {
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Ensure full height for chat-messages with scroll */
+.message-window-wrapper {
+  flex-grow: 1; /* Allows it to take available space */
+  overflow-y: auto; /* Enables scrolling for messages */
+  padding-bottom: 2rem; /* Add padding to the bottom so input doesn't overlap last message */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center items horizontally within the wrapper */
+}
+
+/* Specific styling for messages */
+.chat-message {
+  display: flex;
+  gap: 0.9375rem; /* 15px */
+  margin-bottom: 2.5rem; /* 40px */
+  align-items: flex-start; /* Align images/avatars to top */
+  width: 100%; /* Take full width of its parent (message-window-wrapper) */
+  max-width: 700px; /* NEW: Max width for the entire message container */
+  word-wrap: break-word; /* Ensure long words wrap */
+  position: relative; /* For absolute positioning of copy button */
+  padding-right: 2rem; /* Space for copy button */
+}
+/* NEW: Align user/AI messages to their respective sides while keeping them centered overall */
+.chat-message.user {
+  align-self: flex-end; /* Push user message to the right */
+  flex-direction: row-reverse; /* NEW: Reverse order for user messages to put avatar on right */
+  padding-left: 2rem; /* Space for copy button on the left */
+  padding-right: 0; /* Remove right padding */
+}
+.chat-message.ai {
+  align-self: flex-start; /* Push AI message to the left */
+}
+
+/* FIX: Message content now respects its content width */
+.chat-message .message-content {
+  max-width: 450px; /* Limit content width for better readability */
+}
+
+.chat-message.user .message-content {
+  color: white;
+  border-radius: 0.5rem;
+  border-bottom-left-radius: 0.15rem; /* NEW: Pointy corner on bottom-left for user */
+  border-bottom-right-radius: 0.5rem; /* Ensure other corner is rounded */
+  padding: 0.75rem 1rem;
+}
+.chat-message.ai .message-content {
+  color: white;
+  border-radius: 0.5rem;
+  border-bottom-left-radius: 0.15rem; /* Pointy corner */
+  padding: 0.75rem 1rem;
+}
+/* NEW: Style for markdown elements within messages */
+.message-content strong {
+  font-weight: bold;
+}
+.message-content em {
+  font-style: italic;
+}
+.message-content ul {
+  list-style: disc;
+  margin-left: 1.25rem; /* 20px */
+  padding-left: 0.5rem;
+}
+.message-content ol {
+  list-style: decimal;
+  margin-left: 1.25rem; /* 20px */
+  padding-left: 0.5rem;
+}
+.message-content pre {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  overflow-x: auto;
+  font-family: monospace;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.message-content code {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 0.25rem;
+  padding: 0.1rem 0.3rem;
+  font-family: monospace;
+}
+.message-content h1,
+.message-content h2,
+.message-content h3 {
+  font-weight: bold;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+.message-content h1 {
+  font-size: 1.5em;
+}
+.message-content h2 {
+  font-size: 1.3em;
+}
+.message-content h3 {
+  font-size: 1.1em;
+}
+
+.loading-spinner {
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top: 3px solid #00bcd4;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite;
+  margin-left: 10px;
+  display: inline-block;
+  vertical-align: middle;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+/* NEW: Blinking cursor for typing effect */
+.blinking-cursor {
+  font-weight: 100;
+  animation: 1s blink step-end infinite;
+  display: inline-block;
+  width: 0.5rem;
+  height: 1.2em;
+  background-color: white;
+  vertical-align: middle;
+  margin-left: 2px;
+}
+@keyframes blink {
+  from,
+  to {
+    background-color: transparent;
+  }
+  50% {
+    background-color: white;
+  }
+}
+
+/* NEW: Copy button styling */
+.copy-button {
+  position: absolute;
+  /* bottom: 0.5rem;
+  right: 0.5rem; */
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #f5f5f5;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+.chat-message.ai:hover .copy-button,
+.chat-message.user:hover .copy-button {
+  opacity: 1;
+}
+.copy-button.copied {
+  background-color: #155dfc;
+}
+.chat-message.user .copy-button {
+  right: auto;
+  left: 0.5rem;
+}
+
+/* Styles for the new initial welcome screen cards */
+.card-item {
+  padding: 1rem;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+.card-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+.card-item h3 {
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 1.75rem;
+}
+@media (min-width: 1024px) {
+  .card-item {
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+  }
+}
