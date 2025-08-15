@@ -47,29 +47,49 @@ This project is built using the following key technologies and libraries:
 
 The project is organized into the following main directories and files:
 
-- `public/`: Contains static assets like images, fonts, and the `index.html` file.
-  - `public/images/`: Stores all image assets, including `chatbot.png` and `response.png`.
-  - `public/fonts/`: Contains custom font files.
+- `public/`: Contains static assets.
+  - `public/vite.svg`: Vite logo.
+  - `public/fonts/`: Custom font files.
+    - `public/fonts/NEVERMINDHAND-REGULAR.TTF`: Custom font.
+  - `public/images/`: Image assets.
+    - `public/images/bot.png`: Bot avatar image.
+    - `public/images/Bot.svg`: Bot SVG icon.
+    - `public/images/chatbot.png`: Screenshot of the chatbot interface.
+    - `public/images/close_icon.svg`: Close icon.
+    - `public/images/icon1.png` to `icon7.png`: Various icons.
+    - `public/images/menu_white.svg`: White menu icon.
+    - `public/images/menu.svg`: Menu icon.
+    - `public/images/moon.svg`: Moon icon (for dark mode).
+    - `public/images/response.png`: Screenshot of a response example.
+    - `public/images/settings.svg`: Settings icon.
+    - `public/images/sun.svg`: Sun icon (for light mode).
+    - `public/images/user.svg`: User avatar image.
 - `src/`: Contains the core source code for the React application.
-  - `src/App.jsx`: The main application component.
-  - `src/main.jsx`: The entry point of the React application.
-  - `src/index.css`: Global CSS styles.
+  - `src/App.jsx`: The main application component, orchestrating the chatbot's functionality.
+  - `src/index.css`: Global CSS styles for the application.
+  - `src/main.jsx`: The entry point of the React application, responsible for rendering the `App` component.
   - `src/components/`: Reusable React components.
-    - `ChatInput.jsx`: Component for user input.
-    - `ChatMessage.jsx`: Component for displaying individual chat messages.
-    - `NavBar.jsx`: Navigation bar component.
-    - `Sidebar.jsx`: Sidebar component.
-    - `WelcomeScreen.jsx`: Component for the initial welcome display.
+    - `src/components/ChatInput.jsx`: Component for handling user input and sending messages.
+    - `src/components/ChatMessage.jsx`: Component for displaying individual chat messages.
+    - `src/components/NavBar.jsx`: Navigation bar component.
+    - `src/components/notes2.md`: (Potentially temporary) notes file.
+    - `src/components/Sidebar.jsx`: Sidebar component for additional navigation or features.
+    - `src/components/WelcomeScreen.jsx`: Component for the initial welcome display to the user.
   - `src/helpers/`: Contains helper functions or utilities.
-    - `typingEffect.jsx`: Logic for typing animation effects.
+    - `src/helpers/typingEffect.jsx`: Logic for simulating typing animation effects for bot responses.
+  - `src/screenshots/`: Directory for screenshots (though images are in `public/images`).
+    - `src/screenshots/Bot.svg`: Duplicate bot SVG icon.
   - `src/utils/`: Contains general utility functions.
-    - `utils.js`: Various utility functions.
-- `package.json`: Defines project metadata and lists all dependencies.
-- `vite.config.js`: Vite configuration file.
-- `eslint.config.js`: ESLint configuration for code linting.
-- `README.md`: This file, providing an overview of the project.
+    - `src/utils/utils.js`: Various utility functions used across the application.
+- `.gitignore`: Specifies intentionally untracked files and directories to be ignored by Git.
+- `eslint.config.js`: ESLint configuration file for code linting.
+- `index.html`: The main HTML file that serves as the entry point for the web application.
 - `LICENSE`: The project's license file.
-- `.gitignore`: Specifies intentionally untracked files to ignore.
+- `package-lock.json`: Records the exact versions of dependencies used in the project.
+- `package.json`: Defines project metadata, scripts, and lists all dependencies and devDependencies.
+- `README.md`: This file, providing a comprehensive overview of the project.
+- `vite.config.js`: Vite configuration file for development and build processes.
+- `.env`: Environment variables for configuration (e.g., API keys).
 
 ## Getting Started
 
@@ -86,14 +106,30 @@ Before you begin, ensure you have Node.js and npm (Node Package Manager) install
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/your-username/gemini-chatbot.git
-   cd gemini-chatbot
+   git clone https://github.com/ranak8811/Gemini-Chatbot.git
+   cd Gemini-Chatbot
    ```
 
 2. **Install dependencies:**
    ```bash
    npm install
    ```
+
+### Environment Variables
+
+This project uses environment variables for sensitive information or configuration. You need to create a `.env` file in the root directory of the project.
+
+1. **Create `.env` file:**
+   Create a file named `.env` in the root of your project directory.
+
+2. **Add your variables:**
+   Add the necessary environment variables to this file. The application expects the `VITE_GEMINI_API_KEY` variable.
+
+   ```
+   VITE_GEMINI_API_KEY=YOUR_GEMINI_API_KEY_HERE
+   ```
+
+   Replace `YOUR_GEMINI_API_KEY_HERE` with your actual Gemini API key.
 
 ### Running the Application
 
